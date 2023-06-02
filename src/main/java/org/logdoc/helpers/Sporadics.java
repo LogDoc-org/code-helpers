@@ -1,4 +1,4 @@
-package ru.gang.logdoc.helpers;
+package org.logdoc.helpers;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -7,7 +7,7 @@ import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
-import static ru.gang.logdoc.helpers.Digits.tol;
+import static org.logdoc.helpers.Digits.tol;
 
 /**
  * @author Denis Danilin | me@loslobos.ru

@@ -1,10 +1,10 @@
-package ru.gang.logdoc.helpers;
+package org.logdoc.helpers;
 
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 
-import static ru.gang.logdoc.helpers.Digits.minTwo;
+import static org.logdoc.helpers.Digits.minTwo;
 
 /**
  * @author Denis Danilin | me@loslobos.ru

@@ -1,4 +1,4 @@
-package ru.gang.logdoc.helpers;
+package org.logdoc.helpers;
 
 
 import java.io.IOException;
@@ -6,6 +6,7 @@ import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -17,9 +18,6 @@ import java.util.regex.Pattern;
  * code-helpers ☭ sweat and blood
  */
 public class Texts {
-    private Texts() { }
-
-
     // http://bjoern.hoehrmann.de/utf-8/decoder/dfa/
     private static final int[] utf8d = {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -48,6 +46,9 @@ public class Texts {
             1, 3, 1, 1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 // s7..s8
     };
 
+
+    private Texts() {
+    }
 
     public static boolean getBoolean(final Object o) {
         if (o == null)
@@ -384,5 +385,45 @@ public class Texts {
         collection.forEach(appendable::append);
 
         return appendable;
+    }
+
+    public static boolean anyNotEmpty(final Object... o) {
+        return o == null || o.length == 0 || Arrays.stream(o).anyMatch(o1 -> !isEmpty(o1));
+    }
+
+    public static boolean allEmpty(final Object... o) {
+        return o == null || o.length == 0 || Arrays.stream(o).allMatch(Texts::isEmpty);
+    }
+
+    public static boolean noneEmpty(final Object... o) {
+        return o != null && o.length > 0 && Arrays.stream(o).noneMatch(Texts::isEmpty);
+    }
+
+    public static String quoteEscape(final String s) {
+        return quoteEscape(s, "");
+    }
+
+    public static String bytesToHex(byte[] bytes) {
+        final StringBuilder result = new StringBuilder();
+
+        for (byte byt : bytes) result.append(Integer.toString((byt & 0xff) + 0x100, 16).substring(1));
+
+        return result.toString();
+    }
+
+    public static String quoteEscape(final CharSequence s, final String nullHolder) {
+        if (isEmpty(s))
+            return nullHolder;
+
+        final StringBuilder o = new StringBuilder(s.length());
+        char c;
+
+        for (int i = 0; i < s.length(); i++) {
+            if ((c = s.charAt(i)) == '\'' && (i == 0 || s.charAt(i - 1) != '\\'))
+                o.append('\\');
+            o.append(c);
+        }
+
+        return o.toString();
     }
 }

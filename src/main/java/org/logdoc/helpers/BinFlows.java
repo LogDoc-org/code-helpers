@@ -1,11 +1,11 @@
-package ru.gang.logdoc.helpers;
+package org.logdoc.helpers;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
-import static ru.gang.logdoc.helpers.Texts.isEmpty;
-import static ru.gang.logdoc.helpers.Texts.notNull;
+import static org.logdoc.helpers.Texts.isEmpty;
+import static org.logdoc.helpers.Texts.notNull;
 
 /**
  * @author Denis Danilin | me@loslobos.ru
@@ -14,6 +14,16 @@ import static ru.gang.logdoc.helpers.Texts.notNull;
  */
 public class BinFlows {
     private BinFlows() {}
+
+    public static byte[] asBytes(final int in) {
+        final byte[] intb = new byte[4];
+        intb[0] = (byte) ((in >>> 24) & 0xff);
+        intb[1] = (byte) ((in >>> 16) & 0xff);
+        intb[2] = (byte) ((in >>> 8) & 0xff);
+        intb[3] = (byte) ((in) & 0xff);
+
+        return intb;
+    }
 
     public static void writeShort(final short sh, final OutputStream os) throws IOException {
         os.write((sh >>> 8) & 0xff);

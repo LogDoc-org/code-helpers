@@ -1,9 +1,9 @@
-package ru.gang.logdoc.helpers;
+package org.logdoc.helpers;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
-import static ru.gang.logdoc.helpers.Texts.notNull;
+import static org.logdoc.helpers.Texts.notNull;
 
 /**
  * @author Denis Danilin | me@loslobos.ru
@@ -11,8 +11,10 @@ import static ru.gang.logdoc.helpers.Texts.notNull;
  * code-helpers ☭ sweat and blood
  */
 public class Digits {
-    private Digits() { }
-    public static long getLong(final Object value, final int radix) {
+    private Digits() {
+    }
+
+    public static long getLongIn(final Object value, final int radix) {
         try {
             return Long.parseLong(String.valueOf(value), radix);
         } catch (Exception ee) {
@@ -45,6 +47,23 @@ public class Digits {
             return Float.parseFloat(parameter.toString().replaceAll("([^0-9-.])", ""));
         } catch (Exception e) {
             return 0;
+        }
+    }
+
+    public static long getLong(final Object value, final long substitute) {
+        try {
+            return Long.decode(String.valueOf(value));
+        } catch (Exception e) {
+            return substitute;
+        }
+    }
+
+    public static int getInt(final Object parameter, final int substitute) {
+        final String param = notNull(parameter);
+        try {
+            return Integer.decode(param);
+        } catch (Exception e) {
+            return substitute;
         }
     }
 

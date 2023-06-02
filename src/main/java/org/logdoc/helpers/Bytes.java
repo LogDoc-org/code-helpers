@@ -1,9 +1,12 @@
-package ru.gang.logdoc.helpers;
+package org.logdoc.helpers;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.security.MessageDigest;
 import java.util.Arrays;
+
+import static org.logdoc.helpers.Texts.bytesToHex;
 
 /**
  * @author Denis Danilin | me@loslobos.ru
@@ -13,6 +16,15 @@ import java.util.Arrays;
 public class Bytes {
     private Bytes() { }
 
+    public static String hash256(String data) {
+        try {
+            final MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(data.getBytes());
+            return bytesToHex(md.digest());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static boolean subArrayEquals(final byte[] bigArray, final byte[] match, final int fromIdx) {
         if (fromIdx < 0 || bigArray.length - fromIdx < match.length) return false;
 
