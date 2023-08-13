@@ -50,6 +50,12 @@ public class Texts {
     private Texts() {
     }
 
+    private static final Pattern md = Pattern.compile("([!=#\\.\\(\\)\\*\\[\\]\"`'~_\\-+|])");
+
+    public static String escapeMd(final String s) {
+        return md.matcher(s).replaceAll("\\\\$1");
+    }
+
     public static boolean getBoolean(final Object o) {
         if (o == null)
             return false;
