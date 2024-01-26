@@ -45,12 +45,10 @@ public class Texts {
             1, // s5..s6
             1, 3, 1, 1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 // s7..s8
     };
-
+    private static final Pattern md = Pattern.compile("([!=#\\.\\(\\)\\*\\[\\]\"`'~_\\-+|])");
 
     private Texts() {
     }
-
-    private static final Pattern md = Pattern.compile("([!=#\\.\\(\\)\\*\\[\\]\"`'~_\\-+|])");
 
     public static String escapeMd(final String s) {
         return md.matcher(s).replaceAll("\\\\$1");
@@ -67,13 +65,7 @@ public class Texts {
     }
 
     public static String notNull(final Object o, final String def) {
-        if (o == null)
-            return def == null ? "" : def.trim();
-
-        if (o instanceof String)
-            return ((String) o).trim();
-
-        return String.valueOf(o).trim();
+        return notNull(isEmpty(o) ? def : o);
     }
 
     public static String notNull(final Object o) {
