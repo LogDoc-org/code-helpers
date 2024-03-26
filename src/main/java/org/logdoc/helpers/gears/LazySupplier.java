@@ -3,7 +3,7 @@ package org.logdoc.helpers.gears;
 import java.util.function.Supplier;
 
 /**
- * Copyright (C) 2009-2019 Lightbend Inc. <https://www.lightbend.com>
+ * Copyright (C) 2009-2019 Lightbend Inc. https://www.lightbend.com
  */
 public class LazySupplier<T> implements Supplier<T> {
 
