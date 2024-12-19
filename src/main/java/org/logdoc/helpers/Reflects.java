@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  */
 public class Reflects {
     @SuppressWarnings("unchecked")
-    public static <T> T instantiateClass(final Class<T> clazz) throws InvocationTargetException, IllegalAccessException, InstantiationException, NoSuchMethodException {
+    public static <T> T instantiateClass(final Class<T> clazz) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         final Constructor<?> ctr = clazz.getDeclaredConstructor((Class<?>[]) null);
         makeAccessible(ctr);
 

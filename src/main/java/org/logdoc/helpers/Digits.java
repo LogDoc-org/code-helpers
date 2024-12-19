@@ -27,7 +27,7 @@ public class Digits {
             return Long.decode(String.valueOf(value));
         } catch (Exception e) {
             try {
-                return Long.parseLong(value.toString().replaceAll("([^0-9-])", ""));
+                return Long.parseLong(value.toString().replaceAll("(-?[^0-9])", ""));
             } catch (Exception ee) {
                 return 0;
             }
