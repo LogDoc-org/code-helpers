@@ -4,7 +4,7 @@
 
     <groupId>org.logdoc</groupId>
     <artifactId>code-helpers</artifactId>
-    <version>1.0.10</version>
+    <version>1.0.11-SNAPSHOT</version>
 
     <name>Logdoc custom code helpers</name>
     <description>LogDoc.org project code utilities</description>
@@ -28,7 +28,7 @@
     <scm>
         <connection>scm:git:ssh://git@github.com/LogDoc-org/code-helpers.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/LogDoc-org/code-helpers.git</developerConnection>
-        <tag>code-helpers-1.0.10</tag>
+        <tag>code-helpers-1.0.0</tag>
         <url>https://github.com/LogDoc-org/code-helpers</url>
     </scm>
 
